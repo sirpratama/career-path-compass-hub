@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { quizQuestions, QuizQuestion } from '../data/quizQuestions';
-import QuizQuestion from './QuizQuestion';
+import { quizQuestions, QuizQuestion as QuizQuestionType } from '../data/quizQuestions';
+import QuizQuestionComponent from './QuizQuestion';
 import ProgressBar from './ProgressBar';
 import ResultsPage from './ResultsPage';
 import { careerPaths } from '../data/careerPaths';
@@ -16,7 +16,7 @@ const QuizContainer = () => {
   const [showResults, setShowResults] = useState(false);
   
   // Current question
-  const currentQuestion = quizQuestions[currentQuestionIndex];
+  const currentQuestion: QuizQuestionType = quizQuestions[currentQuestionIndex];
   
   // Handle answer selection
   const handleAnswerSelected = (optionId: string) => {
@@ -87,7 +87,7 @@ const QuizContainer = () => {
         totalQuestions={quizQuestions.length} 
       />
       
-      <QuizQuestion
+      <QuizQuestionComponent
         question={currentQuestion}
         onAnswerSelected={handleAnswerSelected}
         selectedOption={selectedAnswers[currentQuestion.id] || null}
