@@ -1,7 +1,5 @@
 
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Home } from 'lucide-react';
 import { CareerPath, careerPaths } from '../data/careerPaths';
 import CareerCard from './CareerCard';
 import ResourceList from './ResourceList';
@@ -30,15 +28,7 @@ const ResultsPage = ({ careerScores, onRestartQuiz }: ResultsPageProps) => {
   );
   
   return (
-    <div className="container mx-auto px-4 py-8 max-w-6xl animate-fade-in relative">
-      <Link 
-        to="/" 
-        className="absolute top-0 left-0 m-4 p-2 hover:bg-gray-100 rounded-full transition-colors"
-        aria-label="Return to Home"
-      >
-        <Home className="h-6 w-6 text-gray-600" />
-      </Link>
-      
+    <div className="container mx-auto px-4 py-8 max-w-6xl animate-fade-in">
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold mb-2">Your Career Path Results</h2>
         <p className="text-gray-600">Based on your answers, here are your top career matches</p>
