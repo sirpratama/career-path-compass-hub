@@ -1,4 +1,7 @@
+
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Home } from 'lucide-react';
 import { quizQuestions, QuizQuestion as QuizQuestionType } from '../data/quizQuestions';
 import QuizQuestionComponent from './QuizQuestion';
 import ProgressBar from './ProgressBar';
@@ -81,7 +84,15 @@ const QuizContainer = () => {
   }
   
   return (
-    <div className="container mx-auto px-4 py-8 max-w-2xl">
+    <div className="container mx-auto px-4 py-8 max-w-2xl relative">
+      <Link 
+        to="/" 
+        className="absolute top-0 left-0 m-4 p-2 hover:bg-gray-100 rounded-full transition-colors"
+        aria-label="Return to Home"
+      >
+        <Home className="h-6 w-6 text-gray-600" />
+      </Link>
+      
       <ProgressBar 
         currentQuestion={currentQuestionIndex + 1} 
         totalQuestions={quizQuestions.length} 
