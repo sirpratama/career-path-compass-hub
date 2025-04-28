@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 interface LandingPageProps {
   onStartQuiz: () => void;
@@ -88,22 +89,20 @@ const LandingPage = ({ onStartQuiz }: LandingPageProps) => {
                 </a>
               </li>
               <li>
-                <a
-                  href="#login"
-                  onClick={(e) => handleLinkClick(e, 'login')}
+                <Link
+                  to="/login"
                   className="block px-4 py-2 text-gray-600 hover:text-career-purple"
                 >
                   Login
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#signup"
-                  onClick={(e) => handleLinkClick(e, 'signup')}
+                <Link
+                  to="/signup"
                   className="block px-4 py-2 font-medium text-career-purple hover:text-career-dark-purple"
                 >
                   Sign Up
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
