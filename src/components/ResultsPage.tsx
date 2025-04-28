@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { CareerPath, careerPaths } from '../data/careerPaths';
 import CareerCard from './CareerCard';
 import ResourceList from './ResourceList';
+import { Link } from 'react-router-dom';
 
 interface ResultsPageProps {
   careerScores: { [key: string]: number };
@@ -62,7 +63,7 @@ const ResultsPage = ({ careerScores, onRestartQuiz }: ResultsPageProps) => {
           Take the Quiz Again
         </button>
         <p className="mt-4 text-sm text-gray-500">
-          Want to save these results and bookmark resources? <a href="#" className="text-career-purple hover:underline">Sign Up</a> or <a href="#" className="text-career-purple hover:underline">Log In</a>
+          Want to save these results and bookmark resources? <a href="#" className="text-career-purple hover:underline">Sign Up</a> or <Link to="/login" className="text-career-purple hover:underline">Log In</Link>
         </p>
       </div>
     </div>
