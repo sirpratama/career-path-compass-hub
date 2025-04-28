@@ -1,6 +1,4 @@
-
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 
 interface LandingPageProps {
   onStartQuiz: () => void;
@@ -8,7 +6,21 @@ interface LandingPageProps {
 
 const LandingPage = ({ onStartQuiz }: LandingPageProps) => {
   const [isHovered, setIsHovered] = useState(false);
-  
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    event.preventDefault();
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsMenuOpen(false);
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <header className="bg-white shadow-sm py-4">
@@ -26,11 +38,73 @@ const LandingPage = ({ onStartQuiz }: LandingPageProps) => {
             <h1 className="text-xl font-bold">Career Path Compass</h1>
           </div>
           <nav>
-            <ul className="flex space-x-6">
-              <li><a href="#" className="text-gray-600 hover:text-career-purple">About</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-career-purple">Resources</a></li>
-              <li><Link to="/login" className="text-gray-600 hover:text-career-purple">Login</Link></li>
-              <li><Link to="/signup" className="font-medium text-career-purple hover:text-career-dark-purple">Sign Up</Link></li>
+            <button
+              className="md:hidden text-gray-600 focus:outline-none"
+              aria-label="Toggle menu"
+              aria-expanded={isMenuOpen}
+              onClick={toggleMenu}
+            >
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {isMenuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
+            <ul className={`flex-col md:flex-row md:flex space-x-0 md:space-x-6 absolute md:static bg-white md:bg-transparent w-full md:w-auto left-0 md:left-auto top-full md:top-auto transition-transform transform md:transform-none ${isMenuOpen ? 'translate-y-0' : '-translate-y-full'} md:translate-y-0 md:flex`}>
+              <li>
+                <a
+                  href="#about"
+                  onClick={(e) => handleLinkClick(e, 'about')}
+                  className="block px-4 py-2 text-gray-600 hover:text-career-purple"
+                >
+                  About
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#resources"
+                  onClick={(e) => handleLinkClick(e, 'resources')}
+                  className="block px-4 py-2 text-gray-600 hover:text-career-purple"
+                >
+                  Resources
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#login"
+                  onClick={(e) => handleLinkClick(e, 'login')}
+                  className="block px-4 py-2 text-gray-600 hover:text-career-purple"
+                >
+                  Login
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#signup"
+                  onClick={(e) => handleLinkClick(e, 'signup')}
+                  className="block px-4 py-2 font-medium text-career-purple hover:text-career-dark-purple"
+                >
+                  Sign Up
+                </a>
+              </li>
             </ul>
           </nav>
         </div>
@@ -38,7 +112,7 @@ const LandingPage = ({ onStartQuiz }: LandingPageProps) => {
       
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-white to-career-light-purple py-16 md:py-24">
+        <section id="about" className="bg-gradient-to-br from-white to-career-light-purple py-16 md:py-24">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="flex flex-col md:flex-row items-center">
               <div className="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
@@ -73,7 +147,7 @@ const LandingPage = ({ onStartQuiz }: LandingPageProps) => {
         </section>
         
         {/* Features Section */}
-        <section className="py-16 bg-white">
+        <section id="resources" className="py-16 bg-white">
           <div className="container mx-auto px-4 max-w-6xl">
             <h2 className="text-3xl font-bold text-center mb-12">How It Works</h2>
             <div className="grid md:grid-cols-3 gap-10">
