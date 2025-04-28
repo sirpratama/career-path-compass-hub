@@ -269,5 +269,87 @@ export const resources: Resource[] = [
     careerId: "ux-design",
     relevance: 4,
     description: "Online design courses and literature focusing on user experience design."
-  }
+  },
+  // Video Game Developer Resources
+  {
+    id: "vg-resource-1",
+    title: "Unity Learn",
+    provider: "Unity Technologies",
+    type: "course",
+    url: "https://learn.unity.com/",
+    careerId: "video-game-developer",
+    relevance: 5,
+    description: "Official Unity learning platform with tutorials and projects for game development."
+  },
+  {
+    id: "vg-resource-2",
+    title: "Unreal Engine Documentation",
+    provider: "Epic Games",
+    type: "article",
+    url: "https://docs.unrealengine.com/4.27/en-US/",
+    careerId: "video-game-developer",
+    relevance: 5,
+    description: "Comprehensive documentation and tutorials for Unreal Engine game development."
+  },
+  {
+    id: "vg-resource-3",
+    title: "Game Development for Beginners",
+    provider: "Udemy",
+    type: "course",
+    url: "https://www.udemy.com/course/game-development-for-beginners/",
+    careerId: "video-game-developer",
+    relevance: 4,
+    description: "Beginner-friendly course covering the basics of game development."
+  },
+  {
+    id: "vg-resource-4",
+    title: "Game Programming Patterns",
+    provider: "Robert Nystrom",
+    type: "book",
+    url: "http://gameprogrammingpatterns.com/",
+    careerId: "video-game-developer",
+    relevance: 4,
+    description: "Book on design patterns and best practices in game programming (free online)."
+  },
+  {
+    id: "vg-resource-5",
+    title: "Gamasutra Articles",
+    provider: "Gamasutra (Game Developer)",
+    type: "article",
+    url: "https://www.gamedeveloper.com/",
+    careerId: "video-game-developer",
+    relevance: 3,
+    description: "Articles and insights on game development, design, and industry trends."
+  },
+  // Cybersecurity Resources
+  {
+    id: "cs-resource-1",
+    title: "Cybrary",
+    provider: "Cybrary",
+    type: "course",
+    url: "https://www.cybrary.it/",
+    careerId: "cyber-security",
+    relevance: 5,
+    description: "Free online courses and resources for cybersecurity professionals."
+  },
+  {
+    id: "cs-resource-2",
+    title: "CompTIA Security+ Certification",
+    provider: "CompTIA",
+    type: "course",
+    url: "https://www.comptia.org/certifications/security",
+    careerId: "cyber-security",
+    relevance: 5,
+    description: "Entry-level certification for IT professionals in cybersecurity."
+  },
+  {
+    id: "cs-resource-3",
+    title: "Kali Linux Revealed",
+    provider: "Raphaël Hertzog, Jim O'Gorman, Devon Kearney",
+    type: "book",
+    url: "https://www.offsec.com/kali-training/?utm_source=kali&utm_medium=web&utm_campaign=training404",
+    careerId: "cyber-security",
+    relevance: 4,
+    description: "Free book on Kali Linux, a popular penetration testing distribution." 
+  },
 ];

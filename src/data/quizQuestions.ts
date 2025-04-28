@@ -16,250 +16,580 @@ export interface QuizOption {
 export const quizQuestions: QuizQuestion[] = [
   {
     id: 1,
-    text: "When solving problems, you prefer to:",
+    text: "What do you enjoy doing in your free time?",
     options: [
       {
         id: "1a",
-        text: "Use logical reasoning and follow step-by-step procedures",
+        text: "Solving puzzles and brain teasers",
         careerPoints: { 
           "software-development": 3, 
           "data-science": 3, 
           "systems-analysis": 2, 
           "project-management": 1,
-          "ux-design": 0
+          "ux-design": 0,
+          "video-game-developer": 2,
+          "cyber-security": 3
         }
       },
       {
         id: "1b",
-        text: "Think creatively and find innovative solutions",
+        text: "Creating art or designing things",
         careerPoints: { 
           "software-development": 1, 
-          "data-science": 1, 
+          "data-science": 0, 
           "systems-analysis": 0, 
           "project-management": 1,
-          "ux-design": 3
+          "ux-design": 3,
+          "video-game-developer": 3,
+          "cyber-security": 0
         }
       },
       {
         id: "1c",
-        text: "Collaborate with others to find the best approach",
+        text: "Organizing events or activities with friends",
         careerPoints: { 
-          "software-development": 1, 
+          "software-development": 0, 
           "data-science": 0, 
           "systems-analysis": 1, 
           "project-management": 3,
-          "ux-design": 2
+          "ux-design": 2,
+          "video-game-developer": 1,
+          "cyber-security": 0
         }
       },
       {
         id: "1d",
-        text: "Analyze data and identify patterns",
+        text: "Reading about new discoveries and research",
         careerPoints: { 
           "software-development": 1, 
           "data-science": 3, 
           "systems-analysis": 2, 
           "project-management": 1,
-          "ux-design": 0
+          "ux-design": 0,
+          "video-game-developer": 1,
+          "cyber-security": 2
         }
       }
     ]
   },
   {
     id: 2,
-    text: "Which of these activities would you most enjoy?",
+    text: "What personal quality are you most proud of?",
     options: [
       {
         id: "2a",
-        text: "Building and creating digital products",
+        text: "My logical thinking and problem-solving abilities",
         careerPoints: { 
           "software-development": 3, 
-          "data-science": 1, 
-          "systems-analysis": 1, 
-          "project-management": 0,
-          "ux-design": 2
+          "data-science": 2, 
+          "systems-analysis": 2, 
+          "project-management": 1,
+          "ux-design": 0,
+          "video-game-developer": 2,
+          "cyber-security": 3
         }
       },
       {
         id: "2b",
-        text: "Designing user-friendly interfaces",
+        text: "My creativity and eye for design",
         careerPoints: { 
           "software-development": 1, 
           "data-science": 0, 
-          "systems-analysis": 1, 
-          "project-management": 0,
-          "ux-design": 3
+          "systems-analysis": 0, 
+          "project-management": 1,
+          "ux-design": 3,
+          "video-game-developer": 3,
+          "cyber-security": 0
         }
       },
       {
         id: "2c",
-        text: "Leading teams and coordinating efforts",
+        text: "My leadership and people skills",
         careerPoints: { 
           "software-development": 0, 
           "data-science": 0, 
           "systems-analysis": 1, 
           "project-management": 3,
-          "ux-design": 1
+          "ux-design": 1,
+          "video-game-developer": 1,
+          "cyber-security": 1
         }
       },
       {
         id: "2d",
-        text: "Working with numbers and statistical analysis",
+        text: "My analytical mind and attention to detail",
         careerPoints: { 
-          "software-development": 1, 
+          "software-development": 2, 
           "data-science": 3, 
-          "systems-analysis": 2, 
+          "systems-analysis": 3, 
           "project-management": 1,
-          "ux-design": 0
+          "ux-design": 0,
+          "video-game-developer": 1,
+          "cyber-security": 3
         }
       }
     ]
   },
   {
     id: 3,
-    text: "How do you approach learning new technologies?",
+    text: "What type of books or media do you prefer?",
     options: [
       {
         id: "3a",
-        text: "Dive into documentation and experiment through trial and error",
+        text: "Technical manuals and how-to guides",
         careerPoints: { 
           "software-development": 3, 
           "data-science": 2, 
-          "systems-analysis": 1, 
-          "project-management": 0,
-          "ux-design": 1
+          "systems-analysis": 2, 
+          "project-management": 1,
+          "ux-design": 0,
+          "video-game-developer": 2,
+          "cyber-security": 3
         }
       },
       {
         id: "3b",
-        text: "Follow structured courses and tutorials",
+        text: "Visual arts, design magazines, and creative content",
         careerPoints: { 
-          "software-development": 2, 
-          "data-science": 2, 
-          "systems-analysis": 2, 
-          "project-management": 2,
-          "ux-design": 2
+          "software-development": 0, 
+          "data-science": 0, 
+          "systems-analysis": 0, 
+          "project-management": 1,
+          "ux-design": 3,
+          "video-game-developer": 3,
+          "cyber-security": 0
         }
       },
       {
         id: "3c",
-        text: "Focus on how it affects users and business processes",
+        text: "Business and leadership books",
         careerPoints: { 
           "software-development": 0, 
-          "data-science": 1, 
-          "systems-analysis": 2, 
+          "data-science": 0, 
+          "systems-analysis": 1, 
           "project-management": 3,
-          "ux-design": 3
+          "ux-design": 1,
+          "video-game-developer": 0,
+          "cyber-security": 1
         }
       },
       {
         id: "3d",
-        text: "Research it thoroughly before implementing",
+        text: "Scientific journals and research papers",
         careerPoints: { 
           "software-development": 1, 
           "data-science": 3, 
-          "systems-analysis": 3, 
-          "project-management": 1,
-          "ux-design": 1
+          "systems-analysis": 2, 
+          "project-management": 0,
+          "ux-design": 0,
+          "video-game-developer": 1,
+          "cyber-security": 2
         }
       }
     ]
   },
   {
     id: 4,
-    text: "When working on a project, what aspect interests you most?",
+    text: "How do you approach learning something new?",
     options: [
       {
         id: "4a",
-        text: "Making sure it functions correctly and efficiently",
+        text: "I experiment and learn through trial and error",
         careerPoints: { 
           "software-development": 3, 
           "data-science": 1, 
-          "systems-analysis": 2, 
+          "systems-analysis": 1, 
           "project-management": 1,
-          "ux-design": 0
+          "ux-design": 2,
+          "video-game-developer": 3,
+          "cyber-security": 2
         }
       },
       {
         id: "4b",
-        text: "Creating an intuitive and visually appealing experience",
+        text: "I look for visual examples and demonstrations",
         careerPoints: { 
           "software-development": 1, 
           "data-science": 0, 
           "systems-analysis": 0, 
-          "project-management": 1,
-          "ux-design": 3
+          "project-management": 0,
+          "ux-design": 3,
+          "video-game-developer": 2,
+          "cyber-security": 1
         }
       },
       {
         id: "4c",
-        text: "Meeting objectives on time and within budget",
+        text: "I prefer structured courses with clear objectives",
         careerPoints: { 
-          "software-development": 0, 
-          "data-science": 0, 
-          "systems-analysis": 1, 
+          "software-development": 1, 
+          "data-science": 1, 
+          "systems-analysis": 2, 
           "project-management": 3,
-          "ux-design": 0
+          "ux-design": 1,
+          "video-game-developer": 1,
+          "cyber-security": 2
         }
       },
       {
         id: "4d",
-        text: "Finding valuable insights from information",
+        text: "I gather and analyze all available information first",
         careerPoints: { 
-          "software-development": 0, 
+          "software-development": 1, 
           "data-science": 3, 
-          "systems-analysis": 2, 
+          "systems-analysis": 3, 
           "project-management": 1,
-          "ux-design": 1
+          "ux-design": 0,
+          "video-game-developer": 0,
+          "cyber-security": 3
         }
       }
     ]
   },
   {
     id: 5,
-    text: "Which of these best describes your communication style?",
+    text: "What environment do you work best in?",
     options: [
       {
         id: "5a",
-        text: "Precise and technical",
+        text: "Quiet space where I can focus deeply on complex problems",
         careerPoints: { 
           "software-development": 3, 
-          "data-science": 2, 
+          "data-science": 3, 
           "systems-analysis": 2, 
-          "project-management": 1,
-          "ux-design": 0
+          "project-management": 0,
+          "ux-design": 1,
+          "video-game-developer": 2,
+          "cyber-security": 3
         }
       },
       {
         id: "5b",
-        text: "Visual and demonstrative",
+        text: "Creative environment with visual inspiration",
         careerPoints: { 
           "software-development": 1, 
-          "data-science": 1, 
+          "data-science": 0, 
           "systems-analysis": 0, 
           "project-management": 0,
-          "ux-design": 3
+          "ux-design": 3,
+          "video-game-developer": 3,
+          "cyber-security": 0
         }
       },
       {
         id: "5c",
-        text: "Diplomatic and people-oriented",
+        text: "Collaborative setting with lots of interaction",
         careerPoints: { 
           "software-development": 0, 
           "data-science": 0, 
           "systems-analysis": 1, 
           "project-management": 3,
-          "ux-design": 2
+          "ux-design": 2,
+          "video-game-developer": 2,
+          "cyber-security": 1
         }
       },
       {
         id: "5d",
-        text: "Analytical and data-driven",
+        text: "Organized environment with access to data and resources",
+        careerPoints: { 
+          "software-development": 1, 
+          "data-science": 3, 
+          "systems-analysis": 3, 
+          "project-management": 1,
+          "ux-design": 0,
+          "video-game-developer": 0,
+          "cyber-security": 2
+        }
+      }
+    ]
+  },
+  {
+    id: 6,
+    text: "When solving technical problems, you prefer to:",
+    options: [
+      {
+        id: "6a",
+        text: "Write code and build working solutions",
+        careerPoints: { 
+          "software-development": 3, 
+          "data-science": 2, 
+          "systems-analysis": 1, 
+          "project-management": 0,
+          "ux-design": 1,
+          "video-game-developer": 3,
+          "cyber-security": 2
+        }
+      },
+      {
+        id: "6b",
+        text: "Focus on user experience and interface design",
+        careerPoints: { 
+          "software-development": 1, 
+          "data-science": 0, 
+          "systems-analysis": 0, 
+          "project-management": 0,
+          "ux-design": 3,
+          "video-game-developer": 2,
+          "cyber-security": 0
+        }
+      },
+      {
+        id: "6c",
+        text: "Manage resources and coordinate team efforts",
+        careerPoints: { 
+          "software-development": 0, 
+          "data-science": 0, 
+          "systems-analysis": 1, 
+          "project-management": 3,
+          "ux-design": 1,
+          "video-game-developer": 1,
+          "cyber-security": 1
+        }
+      },
+      {
+        id: "6d",
+        text: "Analyze data and identify patterns",
         careerPoints: { 
           "software-development": 1, 
           "data-science": 3, 
           "systems-analysis": 2, 
           "project-management": 1,
-          "ux-design": 0
+          "ux-design": 0,
+          "video-game-developer": 0,
+          "cyber-security": 3
+        }
+      }
+    ]
+  },
+  {
+    id: 7,
+    text: "Which technical skill would you most like to develop?",
+    options: [
+      {
+        id: "7a",
+        text: "Programming and software architecture",
+        careerPoints: { 
+          "software-development": 3, 
+          "data-science": 1, 
+          "systems-analysis": 1, 
+          "project-management": 0,
+          "ux-design": 0,
+          "video-game-developer": 3,
+          "cyber-security": 2
+        }
+      },
+      {
+        id: "7b",
+        text: "UI/UX design and prototyping tools",
+        careerPoints: { 
+          "software-development": 1, 
+          "data-science": 0, 
+          "systems-analysis": 0, 
+          "project-management": 0,
+          "ux-design": 3,
+          "video-game-developer": 2,
+          "cyber-security": 0
+        }
+      },
+      {
+        id: "7c",
+        text: "Project planning and team management",
+        careerPoints: { 
+          "software-development": 0, 
+          "data-science": 0, 
+          "systems-analysis": 1, 
+          "project-management": 3,
+          "ux-design": 1,
+          "video-game-developer": 1,
+          "cyber-security": 1
+        }
+      },
+      {
+        id: "7d",
+        text: "Data analysis and statistical methods",
+        careerPoints: { 
+          "software-development": 1, 
+          "data-science": 3, 
+          "systems-analysis": 2, 
+          "project-management": 0,
+          "ux-design": 0,
+          "video-game-developer": 0,
+          "cyber-security": 2
+        }
+      }
+    ]
+  },
+  {
+    id: 8,
+    text: "In a technical project, which role would you naturally take?",
+    options: [
+      {
+        id: "8a",
+        text: "Developer implementing the core functionality",
+        careerPoints: { 
+          "software-development": 3, 
+          "data-science": 1, 
+          "systems-analysis": 1, 
+          "project-management": 0,
+          "ux-design": 0,
+          "video-game-developer": 3,
+          "cyber-security": 2
+        }
+      },
+      {
+        id: "8b",
+        text: "Designer creating the user interface and experience",
+        careerPoints: { 
+          "software-development": 0, 
+          "data-science": 0, 
+          "systems-analysis": 0, 
+          "project-management": 0,
+          "ux-design": 3,
+          "video-game-developer": 2,
+          "cyber-security": 0
+        }
+      },
+      {
+        id: "8c",
+        text: "Project manager coordinating tasks and timelines",
+        careerPoints: { 
+          "software-development": 0, 
+          "data-science": 0, 
+          "systems-analysis": 1, 
+          "project-management": 3,
+          "ux-design": 1,
+          "video-game-developer": 1,
+          "cyber-security": 1
+        }
+      },
+      {
+        id: "8d",
+        text: "Analyst working with data and creating insights",
+        careerPoints: { 
+          "software-development": 1, 
+          "data-science": 3, 
+          "systems-analysis": 2, 
+          "project-management": 1,
+          "ux-design": 0,
+          "video-game-developer": 0,
+          "cyber-security": 2
+        }
+      }
+    ]
+  },
+  {
+    id: 9,
+    text: "Which technical challenge interests you most?",
+    options: [
+      {
+        id: "9a",
+        text: "Building efficient, scalable software systems",
+        careerPoints: { 
+          "software-development": 3, 
+          "data-science": 1, 
+          "systems-analysis": 2, 
+          "project-management": 0,
+          "ux-design": 0,
+          "video-game-developer": 2,
+          "cyber-security": 3
+        }
+      },
+      {
+        id: "9b",
+        text: "Creating intuitive, accessible user interfaces",
+        careerPoints: { 
+          "software-development": 1, 
+          "data-science": 0, 
+          "systems-analysis": 0, 
+          "project-management": 0,
+          "ux-design": 3,
+          "video-game-developer": 2,
+          "cyber-security": 0
+        }
+      },
+      {
+        id: "9c",
+        text: "Managing complex projects with multiple stakeholders",
+        careerPoints: { 
+          "software-development": 0, 
+          "data-science": 0, 
+          "systems-analysis": 1, 
+          "project-management": 3,
+          "ux-design": 1,
+          "video-game-developer": 1,
+          "cyber-security": 1
+        }
+      },
+      {
+        id: "9d",
+        text: "Extracting meaningful insights from large datasets",
+        careerPoints: { 
+          "software-development": 1, 
+          "data-science": 3, 
+          "systems-analysis": 2, 
+          "project-management": 0,
+          "ux-design": 0,
+          "video-game-developer": 0,
+          "cyber-security": 2
+        }
+      }
+    ]
+  },
+  {
+    id: 10,
+    text: "Which technology or tool would you most like to master?",
+    options: [
+      {
+        id: "10a",
+        text: "Programming languages and development frameworks",
+        careerPoints: { 
+          "software-development": 3, 
+          "data-science": 2, 
+          "systems-analysis": 1, 
+          "project-management": 0,
+          "ux-design": 0,
+          "video-game-developer": 3,
+          "cyber-security": 2
+        }
+      },
+      {
+        id: "10b",
+        text: "Design software and prototyping tools",
+        careerPoints: { 
+          "software-development": 1, 
+          "data-science": 0, 
+          "systems-analysis": 0, 
+          "project-management": 0,
+          "ux-design": 3,
+          "video-game-developer": 2,
+          "cyber-security": 0
+        }
+      },
+      {
+        id: "10c",
+        text: "Project management and collaboration platforms",
+        careerPoints: { 
+          "software-development": 0, 
+          "data-science": 0, 
+          "systems-analysis": 1, 
+          "project-management": 3,
+          "ux-design": 1,
+          "video-game-developer": 1,
+          "cyber-security": 1
+        }
+      },
+      {
+        id: "10d",
+        text: "Data analysis and machine learning tools",
+        careerPoints: { 
+          "software-development": 1, 
+          "data-science": 3, 
+          "systems-analysis": 2, 
+          "project-management": 0,
+          "ux-design": 0,
+          "video-game-developer": 0,
+          "cyber-security": 2
         }
       }
     ]

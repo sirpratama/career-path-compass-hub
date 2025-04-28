@@ -51,6 +51,20 @@ const CareerCard = ({ career, score, maxScore, onClick, isSelected }: CareerCard
           border: 'border-amber-400',
           light: 'bg-amber-50'
         };
+      case 'red':
+        return {
+          bg: 'bg-career-red',
+          text: 'text-career-red',
+          border: 'border-career-red',
+          light: 'bg-red-50'
+        };
+      case 'brown':
+        return {
+          bg: 'bg-career-brown',
+          text: 'text-career-brown',
+          border: 'border-career-brown',
+          light: 'bg-brown-50'
+        };
       default:
         return {
           bg: 'bg-gray-500',

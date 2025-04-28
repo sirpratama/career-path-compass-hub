@@ -48,5 +48,21 @@ export const careerPaths: { [key: string]: CareerPath } = {
     color: "yellow",
     icon: "Palette",
     alignment: "Your creative thinking and interest in user experience make you an excellent fit for UX design, where you'll craft intuitive interfaces that delight users."
+  },
+  "video-game-developer": {
+    id: "video-game-developer",
+    title: "Video Game Developer",
+    description: "Design and program interactive games for various platforms using game engines and programming languages.",
+    color: "red",
+    icon: "Gamepad",
+    alignment: "Your creativity combined with technical skills make you well-suited for video game development, where you'll bring virtual worlds to life through code and design."
+  },
+  "cyber-security": {
+    id: "cyber-security",
+    title: "Cyber Security",
+    description: "Protect systems, networks, and data from digital attacks by implementing security measures and monitoring for threats.",
+    color: "brown",
+    icon: "Shield",
+    alignment: "Your analytical mindset and attention to detail are perfect for cyber security, where you'll defend organizations against threats and safeguard sensitive information."
   }
 };
