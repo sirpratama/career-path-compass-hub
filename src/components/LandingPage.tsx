@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 interface LandingPageProps {
   onStartQuiz: () => void;
@@ -28,8 +29,8 @@ const LandingPage = ({ onStartQuiz }: LandingPageProps) => {
             <ul className="flex space-x-6">
               <li><a href="#" className="text-gray-600 hover:text-career-purple">About</a></li>
               <li><a href="#" className="text-gray-600 hover:text-career-purple">Resources</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-career-purple">Login</a></li>
-              <li><a href="#" className="font-medium text-career-purple hover:text-career-dark-purple">Sign Up</a></li>
+              <li><Link to="/login" className="text-gray-600 hover:text-career-purple">Login</Link></li>
+              <li><Link to="/signup" className="font-medium text-career-purple hover:text-career-dark-purple">Sign Up</Link></li>
             </ul>
           </nav>
         </div>
