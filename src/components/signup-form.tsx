@@ -1,11 +1,10 @@
-import type React from "react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
-export function SignupForm({ className, ...props }: React.ComponentProps<"div">) {
+export function LoginForm({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="overflow-hidden dark:bg-gray-900">
@@ -33,7 +32,7 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
                 <Input id="confirm-password" type="password" required className="dark:bg-gray-800 dark:text-white dark:border-gray-700" />
               </div>
               <Button type="submit" className="w-full">
-                Sign Up
+                Login
               </Button>
               <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
                 <span className="relative z-10 bg-background px-2 text-muted-foreground dark:text-gray-400">Or continue with</span>
@@ -46,7 +45,7 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
                       fill="currentColor"
                     />
                   </svg>
-                  <span className="sr-only">Sign up with Apple</span>
+                  <span className="sr-only">Login with Apple</span>
                 </Button>
                 <Button variant="outline" className="w-full dark:bg-gray-800 dark:text-white dark:border-gray-700">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -55,7 +54,7 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
                       fill="currentColor"
                     />
                   </svg>
-                  <span className="sr-only">Sign up with Google</span>
+                  <span className="sr-only">Login with Google</span>
                 </Button>
                 <Button variant="outline" className="w-full dark:bg-gray-800 dark:text-white dark:border-gray-700">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -64,7 +63,7 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
                       fill="currentColor"
                     />
                   </svg>
-                  <span className="sr-only">Sign up with Meta</span>
+                  <span className="sr-only">Login with Meta</span>
                 </Button>
               </div>
               <div className="text-center text-sm dark:text-gray-400">
@@ -77,7 +76,7 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
           </form>
           <div className="relative hidden bg-muted md:block dark:bg-gray-800">
             <img
-              src="/placeholder.svg?height=800&width=600"
+              src="/placeholder.svg"
               alt="Image"
               className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
             />
