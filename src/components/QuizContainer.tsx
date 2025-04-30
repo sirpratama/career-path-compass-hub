@@ -139,7 +139,12 @@ const QuizContainer = ({ isDarkMode, onToggleDarkMode }: QuizContainerProps) => 
           </svg>
           <span className={`text-lg font-semibold ${isDarkMode ? 'text-purple-400' : 'text-career-purple'}`}>Home</span>
         </button>
-        <ResultsPage careerScores={finalScores} onRestartQuiz={handleRestartQuiz} isDarkMode={isDarkMode} onToggleDarkMode={onToggleDarkMode} />
+        <ResultsPage 
+          careerScores={finalScores} 
+          onRestartQuiz={handleRestartQuiz} 
+          isDarkMode={isDarkMode}
+          onToggleDarkMode={onToggleDarkMode}
+        />
       </div>
     );
   }

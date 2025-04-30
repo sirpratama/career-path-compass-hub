@@ -140,7 +140,7 @@ const ResultsPage = ({ careerScores, onRestartQuiz, isDarkMode, onToggleDarkMode
           Take the Quiz Again
         </button>
         <p className={`mt-4 text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-          Want to save these results and bookmark resources? <a href="#" className={`${isDarkMode ? 'text-purple-400' : 'text-career-purple'} hover:underline`}>Sign Up</a> or <Link to="/login" className={`${isDarkMode ? 'text-purple-400' : 'text-career-purple'} hover:underline`}>Log In</Link>
+          Want to save these results and bookmark resources? <Link to="/signup" className={`${isDarkMode ? 'text-purple-400' : 'text-career-purple'} hover:underline`}>Sign Up</Link> or <Link to="/login" className={`${isDarkMode ? 'text-purple-400' : 'text-career-purple'} hover:underline`}>Log In</Link>
         </p>
       </div>
 
