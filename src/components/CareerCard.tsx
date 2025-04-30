@@ -1,3 +1,4 @@
+
 import { CareerPath } from "../data/careerPaths";
 
 interface CareerCardProps {
@@ -6,12 +7,11 @@ interface CareerCardProps {
   maxScore: number;
   onClick: () => void;
   isSelected: boolean;
-  isDarkMode: boolean;
 }
 
-const CareerCard = ({ career, score, maxScore, onClick, isSelected, isDarkMode }: CareerCardProps) => {
+const CareerCard = ({ career, score, maxScore, onClick, isSelected }: CareerCardProps) => {
   // Calculate match percentage
-  const percentage = Math.round((score / maxScore) * 100);
+  const matchPercentage = Math.round((score / maxScore) * 100);
   
   // Get color class based on career color
   const getColorClass = (color: string) => {
@@ -78,34 +78,39 @@ const CareerCard = ({ career, score, maxScore, onClick, isSelected, isDarkMode }
   const colorClass = getColorClass(career.color);
   
   return (
-    <div
+    <div 
+      className={`border-2 rounded-lg overflow-hidden transition-all cursor-pointer transform hover:-translate-y-1 hover:shadow-lg ${
+        isSelected 
+          ? `${colorClass.border} shadow-md` 
+          : 'border-gray-200'
+      }`}
       onClick={onClick}
-      className={`cursor-pointer rounded-lg p-6 transition-all duration-200 ${
-        isSelected
-          ? isDarkMode
-            ? 'bg-gray-800 border-2 border-purple-400'
-            : 'bg-white border-2 border-career-purple'
-          : isDarkMode
-            ? 'bg-gray-800 hover:bg-gray-700'
-            : 'bg-white hover:bg-gray-50'
-      } shadow-md`}
     >
-      <div className="flex items-center justify-between mb-4">
-        <h3 className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>{career.title}</h3>
-        <span className={`text-sm font-medium ${isDarkMode ? 'text-purple-400' : 'text-career-purple'}`}>
-          {percentage}% Match
-        </span>
-      </div>
-      
-      <p className={`text-sm mb-4 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-        {career.description}
-      </p>
-      
-      <div className={`w-full ${isDarkMode ? 'bg-gray-700' : 'bg-gray-200'} rounded-full h-2`}>
-        <div
-          className={`${isDarkMode ? 'bg-purple-400' : 'bg-career-purple'} h-2 rounded-full transition-all duration-500`}
-          style={{ width: `${percentage}%` }}
-        ></div>
+      <div className={`p-4 ${isSelected ? colorClass.light : 'bg-white'}`}>
+        <div className="flex justify-between items-start">
+          <h3 className="text-xl font-bold">{career.title}</h3>
+          <div className={`${colorClass.bg} text-white text-sm rounded-full px-3 py-1 font-semibold`}>
+            {matchPercentage}% Match
+          </div>
+        </div>
+        
+        <p className="text-gray-600 mt-2 text-sm">{career.description}</p>
+        
+        <div className="mt-4">
+          <h4 className="font-semibold text-sm mb-2">Why it fits you:</h4>
+          <p className="text-sm text-gray-700">{career.alignment}</p>
+        </div>
+        
+        <div className="mt-4">
+          <button 
+            className={`flex items-center text-sm font-medium ${colorClass.text}`}
+          >
+            {isSelected ? "Currently viewing" : "View resources"} 
+            <svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 ml-1 ${isSelected ? 'rotate-90' : ''} transition-transform`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   );
