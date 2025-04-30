@@ -1,4 +1,3 @@
-
 import { Resource } from "../data/resources";
 
 interface ResourceItemProps {
