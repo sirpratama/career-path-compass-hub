@@ -6,7 +6,12 @@ import ResultsPage from './ResultsPage';
 import LandingPage from '../components/LandingPage';
 import { careerPaths } from '../data/careerPaths';
 
-const QuizContainer = () => {
+interface QuizContainerProps {
+  isDarkMode: boolean;
+  onToggleDarkMode: () => void;
+}
+
+const QuizContainer = ({ isDarkMode, onToggleDarkMode }: QuizContainerProps) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<{ [key: number]: string }>({});
   const [showResults, setShowResults] = useState(false);
@@ -106,24 +111,24 @@ const QuizContainer = () => {
   };
 
   if (showLandingPage) {
-    return <LandingPage onStartQuiz={handleStartQuiz} />;
+    return <LandingPage onStartQuiz={handleStartQuiz} isDarkMode={isDarkMode} onToggleDarkMode={onToggleDarkMode} />;
   }
 
   if (showResults) {
     const finalScores = Object.keys(careerScores).length > 0 ? careerScores : calculateCareerScores();
     return (
-      <div className="min-h-screen bg-gray-50 p-6">
+      <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'} p-6`}>
         <button
           onClick={handleGoToLandingPage}
           aria-label="Go to landing page"
-          className="mb-6 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-career-purple bg-transparent border-none cursor-pointer"
+          className={`mb-6 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-career-purple bg-transparent border-none cursor-pointer`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            className="h-8 w-8 text-career-purple hover:text-career-dark-purple transition-colors"
+            className={`h-8 w-8 ${isDarkMode ? 'text-purple-400 hover:text-purple-300' : 'text-career-purple hover:text-career-dark-purple'} transition-colors`}
           >
             <path
               strokeLinecap="round"
@@ -132,9 +137,9 @@ const QuizContainer = () => {
               d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
             />
           </svg>
-          <span className="text-lg font-semibold text-career-purple">Home</span>
+          <span className={`text-lg font-semibold ${isDarkMode ? 'text-purple-400' : 'text-career-purple'}`}>Home</span>
         </button>
-        <ResultsPage careerScores={finalScores} onRestartQuiz={handleRestartQuiz} />
+        <ResultsPage careerScores={finalScores} onRestartQuiz={handleRestartQuiz} isDarkMode={isDarkMode} />
       </div>
     );
   }
@@ -142,18 +147,18 @@ const QuizContainer = () => {
   const currentQuestion: QuizQuestionType = quizQuestions[currentQuestionIndex];
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'} p-6`}>
       <button
         onClick={handleGoToLandingPage}
         aria-label="Go to landing page"
-        className="mb-6 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-career-purple bg-transparent border-none cursor-pointer"
+        className={`mb-6 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-career-purple bg-transparent border-none cursor-pointer`}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          className="h-8 w-8 text-career-purple hover:text-career-dark-purple transition-colors"
+          className={`h-8 w-8 ${isDarkMode ? 'text-purple-400 hover:text-purple-300' : 'text-career-purple hover:text-career-dark-purple'} transition-colors`}
         >
           <path
             strokeLinecap="round"
@@ -162,12 +167,13 @@ const QuizContainer = () => {
             d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
           />
         </svg>
-        <span className="text-lg font-semibold text-career-purple">Home</span>
+        <span className={`text-lg font-semibold ${isDarkMode ? 'text-purple-400' : 'text-career-purple'}`}>Home</span>
       </button>
 
       <ProgressBar 
-        currentQuestion={currentQuestionIndex + 1} 
-        totalQuestions={quizQuestions.length} 
+        currentQuestionIndex={currentQuestionIndex} 
+        totalQuestions={quizQuestions.length}
+        isDarkMode={isDarkMode}
       />
 
       <QuizQuestionComponent
@@ -178,6 +184,7 @@ const QuizContainer = () => {
         isNextDisabled={!selectedAnswers[currentQuestion.id]}
         onNext={handleNext}
         onBack={handleBack}
+        isDarkMode={isDarkMode}
       />
     </div>
   );

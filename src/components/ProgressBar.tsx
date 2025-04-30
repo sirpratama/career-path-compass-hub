@@ -1,34 +1,36 @@
-
-import { useEffect, useState } from "react";
+import React from 'react';
 
 interface ProgressBarProps {
-  currentQuestion: number;
+  currentQuestionIndex: number;
   totalQuestions: number;
+  isDarkMode: boolean;
 }
 
-const ProgressBar = ({ currentQuestion, totalQuestions }: ProgressBarProps) => {
-  const [width, setWidth] = useState(0);
+const ProgressBar: React.FC<ProgressBarProps> = ({ 
+  currentQuestionIndex, 
+  totalQuestions,
+  isDarkMode
+}) => {
+  // Make sure totalQuestions is at least 1 to avoid division by zero
+  const safeTotal = Math.max(1, totalQuestions);
+  // Calculate progress percentage
+  const progress = Math.round(((currentQuestionIndex + 1) / safeTotal) * 100);
   
-  useEffect(() => {
-    // Calculate the percentage of progress
-    const percentage = ((currentQuestion - 1) / totalQuestions) * 100;
-    setWidth(percentage);
-  }, [currentQuestion, totalQuestions]);
-
   return (
-    <div className="mb-6">
-      <div className="flex justify-between text-xs mb-1">
-        <span className="text-sm font-medium text-muted-foreground">
-          Question {currentQuestion} of {totalQuestions}
-        </span>
-        <span className="text-sm font-medium text-muted-foreground">
-          {Math.round((currentQuestion - 1) / totalQuestions * 100)}%
-        </span>
+    <div className="w-full mb-6">
+      <div className={`flex justify-between text-sm mb-1 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+        <span>Question {currentQuestionIndex + 1} of {totalQuestions}</span>
+        <span>{progress}% Complete</span>
       </div>
-      <div className="h-2 w-full bg-gray-200 rounded-full overflow-hidden">
+      
+      <div className={`w-full ${isDarkMode ? 'bg-gray-700' : 'bg-gray-200'} rounded-full h-2.5`}>
         <div 
-          className="h-full bg-career-purple transition-all duration-300 ease-out rounded-full" 
-          style={{ width: `${width}%` }}
+          className={`${isDarkMode ? 'bg-purple-400' : 'bg-career-purple'} h-2.5 rounded-full transition-all duration-500 ease-in-out`}
+          style={{ width: `${progress}%` }}
+          role="progressbar"
+          aria-valuenow={progress}
+          aria-valuemin={0}
+          aria-valuemax={100}
         ></div>
       </div>
     </div>

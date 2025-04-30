@@ -5,17 +5,18 @@ import ResourcesSection from './ResourceSection';
 
 interface LandingPageProps {
   onStartQuiz: () => void;
+  isDarkMode: boolean;
+  onToggleDarkMode: () => void;
 }
 
-const LandingPage = ({ onStartQuiz }: LandingPageProps) => {
+const LandingPage = ({ onStartQuiz, isDarkMode, onToggleDarkMode }: LandingPageProps) => {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
   const [hoveredNavIndex, setHoveredNavIndex] = useState<number | null>(null);
   const [activeNavIndex, setActiveNavIndex] = useState(0);
   const [hoverStyle, setHoverStyle] = useState({});
   const [activeStyle, setActiveStyle] = useState({ left: "0px", width: "0px" });
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const navItems = ["About", "Resources", "Login", "Sign Up"];
+  const navItems = ["About", "How It Works","Resources", "Login", "Sign Up"];
   const navRefs = useRef<(HTMLLIElement | null)[]>([]);
   
   useEffect(() => {
@@ -55,28 +56,24 @@ const LandingPage = ({ onStartQuiz }: LandingPageProps) => {
     });
   }, []);
 
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-    document.documentElement.classList.toggle("dark");
-  };
-
   const handleNavClick = (index: number) => {
     setActiveNavIndex(index);
     
     // Handle navigation based on nav item clicked
     switch (index) {
-      case 0: // About
-        // Scroll to About section
+      case 0: // How It Works
         document.getElementById('about-section')?.scrollIntoView({ behavior: 'smooth' });
         break;
-      case 1: // Resources
-        // Scroll to Resources section
+      case 1: // About
+        document.getElementById('how-it-works-section')?.scrollIntoView({ behavior: 'smooth' });
+        break;
+      case 2: // Resources
         document.getElementById('resources-section')?.scrollIntoView({ behavior: 'smooth' });
         break;
-      case 2: // Login
+      case 3: // Login
         navigate('/login');
         break;
-      case 3: // Sign Up
+      case 4: // Sign Up
         navigate('/signup');
         break;
       default:
@@ -147,7 +144,7 @@ const LandingPage = ({ onStartQuiz }: LandingPageProps) => {
             
             <button 
               className="rounded-full p-2 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600"
-              onClick={toggleDarkMode}
+              onClick={onToggleDarkMode}
             >
               {isDarkMode ? (
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -208,6 +205,60 @@ const LandingPage = ({ onStartQuiz }: LandingPageProps) => {
                   }}
                 />
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* How It Works Section */}
+        <section id="how-it-works-section" className={`py-16 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
+          <div className="container mx-auto px-4 max-w-6xl">
+            <h2 className={`text-3xl font-bold text-center mb-12 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>How It Works</h2>
+            <div className="grid md:grid-cols-3 gap-8 text-center">
+              {/* Take the Quiz */}
+              <div>
+                <div className="flex justify-center mb-4">
+                  <span className={`inline-flex items-center justify-center w-16 h-16 rounded-full ${isDarkMode ? 'bg-purple-900' : 'bg-purple-100'}`}>
+                    <svg xmlns="http://www.w3.org/2000/svg" className={`h-8 w-8 ${isDarkMode ? 'text-purple-300' : 'text-purple-500'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M12 14a4 4 0 10-4-4 4 4 0 004 4zm0 0v2m0 4h.01" />
+                    </svg>
+                  </span>
+                </div>
+                <h3 className={`text-xl font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Take the Quiz</h3>
+                <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Answer questions about your preferences, skills, and working style.</p>
+              </div>
+              {/* Get Results */}
+              <div>
+                <div className="flex justify-center mb-4">
+                  <span className={`inline-flex items-center justify-center w-16 h-16 rounded-full ${isDarkMode ? 'bg-purple-900' : 'bg-purple-100'}`}>
+                    <svg xmlns="http://www.w3.org/2000/svg" className={`h-8 w-8 ${isDarkMode ? 'text-purple-300' : 'text-purple-500'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2a2 2 0 012-2h2a2 2 0 012 2v2m-6 0h6m-6 0a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2m-6 0v2a2 2 0 002 2h2a2 2 0 002-2v-2" />
+                    </svg>
+                  </span>
+                </div>
+                <h3 className={`text-xl font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Get Results</h3>
+                <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Receive personalized career recommendations matched to your profile.</p>
+              </div>
+              {/* Explore Resources */}
+              <div>
+                <div className="flex justify-center mb-4">
+                  <span className={`inline-flex items-center justify-center w-16 h-16 rounded-full ${isDarkMode ? 'bg-purple-900' : 'bg-purple-100'}`}>
+                    <svg xmlns="http://www.w3.org/2000/svg" className={`h-8 w-8 ${isDarkMode ? 'text-purple-300' : 'text-purple-500'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 20h9" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m0 0H3" />
+                    </svg>
+                  </span>
+                </div>
+                <h3 className={`text-xl font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Explore Resources</h3>
+                <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Access curated learning materials to start your journey in each career path.</p>
+              </div>
+            </div>
+            <div className="flex justify-center mt-10">
+              <button
+                onClick={onStartQuiz}
+                className={`px-8 py-3 rounded-md text-lg font-medium transition-colors ${isDarkMode ? 'bg-purple-600 hover:bg-purple-700 text-white' : 'bg-career-purple hover:bg-career-dark-purple text-white'}`}
+              >
+                Start Your Career Quiz
+              </button>
             </div>
           </div>
         </section>
