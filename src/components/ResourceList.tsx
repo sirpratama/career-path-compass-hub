@@ -22,23 +22,45 @@ const ResourceList = ({ careerId, isDarkMode = false, colorKey = 'default' }: Re
     .filter(resource => resource.careerId === careerId)
     .map(resource => resource.type))];
   
+  // Helper function to get button styles
+  const getButtonStyles = (type: string) => {
+    if (filter === type) {
+      if (colorKey === 'default') {
+        return isDarkMode 
+          ? 'bg-purple-600 text-white' 
+          : 'bg-career-purple text-white';
+      } else {
+        // For other colors, use a consistent styled active state
+        return isDarkMode 
+          ? `bg-purple-600 text-white` 
+          : `bg-purple-500 text-white`;
+      }
+    } else {
+      return isDarkMode 
+        ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' 
+        : 'bg-gray-200 text-gray-700 hover:bg-gray-300';
+    }
+  };
+  
+  // Format type name for display
+  const formatTypeName = (type: string) => {
+    if (type === 'all') {
+      return 'All Resources';
+    }
+    return type.charAt(0).toUpperCase() + type.slice(1);
+  };
+  
   return (
     <div className="mt-6">
-      <div className={`mb-4 border-b ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}>
-        <div className="flex space-x-2 overflow-x-auto pb-2">
+      <div className={`mb-6 ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+        <div className="flex flex-wrap gap-2 pb-4">
           {resourceTypes.map((type) => (
             <button
               key={type}
               onClick={() => setFilter(type)}
-              className={`px-4 py-2 text-sm font-medium rounded-full whitespace-nowrap transition-all ${
-                filter === type
-                  ? `bg-${colorKey === 'default' ? 'career-purple' : colorKey}-500 text-white`
-                  : isDarkMode 
-                    ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' 
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
+              className={`px-4 py-2 text-sm font-medium rounded-full whitespace-nowrap transition-all ${getButtonStyles(type)}`}
             >
-              {type.charAt(0).toUpperCase() + type.slice(1)}
+              {formatTypeName(type)}
             </button>
           ))}
         </div>

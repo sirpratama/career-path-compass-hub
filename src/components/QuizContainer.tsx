@@ -5,6 +5,7 @@ import ProgressBar from './ProgressBar';
 import ResultsPage from './ResultsPage';
 import LandingPage from '../components/LandingPage';
 import { careerPaths } from '../data/careerPaths';
+import { useAuth } from '@/hooks/useAuth';
 
 interface QuizContainerProps {
   isDarkMode: boolean;
@@ -18,6 +19,8 @@ const QuizContainer = ({ isDarkMode, onToggleDarkMode }: QuizContainerProps) => 
   const [showLandingPage, setShowLandingPage] = useState(true);
   const [isTestMode, setIsTestMode] = useState(false);
   const [careerScores, setCareerScores] = useState<{ [key: string]: number }>({});
+
+  const { user: currentUser, isLoadingAuth } = useAuth();
 
   const defaultTestScores = {
     "software-development": 10,
@@ -39,6 +42,15 @@ const QuizContainer = ({ isDarkMode, onToggleDarkMode }: QuizContainerProps) => 
       setIsTestMode(true);
     }
   }, []);
+
+  useEffect(() => {
+    if (!isLoadingAuth && currentUser && currentUser.savedResults) {
+      console.log("User logged in with saved results, showing results page.");
+      setCareerScores(currentUser.savedResults as Record<string, number>);
+      setShowResults(true);
+      setShowLandingPage(false);
+    }
+  }, [currentUser, isLoadingAuth]);
 
   const handleGoToLandingPage = () => {
     setShowLandingPage(true);
@@ -110,12 +122,23 @@ const QuizContainer = ({ isDarkMode, onToggleDarkMode }: QuizContainerProps) => 
     return scores;
   };
 
+  if (isLoadingAuth) {
+    return <div className="min-h-screen flex items-center justify-center">Checking authentication...</div>;
+  }
+
   if (showLandingPage) {
     return <LandingPage onStartQuiz={handleStartQuiz} isDarkMode={isDarkMode} onToggleDarkMode={onToggleDarkMode} />;
   }
 
   if (showResults) {
     const finalScores = Object.keys(careerScores).length > 0 ? careerScores : calculateCareerScores();
+    if (Object.keys(finalScores).length === 0) {
+      console.warn("Attempted to show results page with empty scores. Redirecting to landing.");
+      setShowLandingPage(true);
+      setShowResults(false);
+      return <LandingPage onStartQuiz={handleStartQuiz} isDarkMode={isDarkMode} onToggleDarkMode={onToggleDarkMode} />;
+    }
+    
     return (
       <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'} p-6`}>
         <button
