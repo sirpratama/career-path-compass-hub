@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ResourcesSection from './ResourceSection';
+import { useAuth } from '@/hooks/useAuth';
 
 interface LandingPageProps {
   onStartQuiz: () => void;
@@ -16,7 +17,24 @@ const LandingPage = ({ onStartQuiz, isDarkMode, onToggleDarkMode }: LandingPageP
   const [activeNavIndex, setActiveNavIndex] = useState(0);
   const [hoverStyle, setHoverStyle] = useState({});
   const [activeStyle, setActiveStyle] = useState({ left: "0px", width: "0px" });
-  const navItems = ["About", "How It Works","Resources", "Login", "Sign Up"];
+  
+  const { user: currentUser, logout: logoutUser } = useAuth();
+
+  const baseNavItems = [
+    { label: "About", action: 'scroll', target: '#about-section' },
+    { label: "How It Works", action: 'scroll', target: '#how-it-works-section' },
+    { label: "Resources", action: 'scroll', target: '#resources-section' },
+  ];
+
+  const authNavItems = currentUser 
+    ? [] // No Login/Signup if logged in
+    : [
+        { label: "Login", action: 'navigate', target: '/login' },
+        { label: "Sign Up", action: 'navigate', target: '/signup' },
+      ];
+      
+  const navItems = [...baseNavItems, ...authNavItems];
+  
   const navRefs = useRef<(HTMLLIElement | null)[]>([]);
   
   useEffect(() => {
@@ -40,8 +58,9 @@ const LandingPage = ({ onStartQuiz, isDarkMode, onToggleDarkMode }: LandingPageP
         left: `${offsetLeft}px`,
         width: `${offsetWidth}px`,
       });
+      setHoveredNavIndex(null);
     }
-  }, [activeNavIndex]);
+  }, [activeNavIndex, navItems.length]);
 
   useEffect(() => {
     requestAnimationFrame(() => {
@@ -57,27 +76,30 @@ const LandingPage = ({ onStartQuiz, isDarkMode, onToggleDarkMode }: LandingPageP
   }, []);
 
   const handleNavClick = (index: number) => {
+    const item = navItems[index];
+    if (!item) return;
+
     setActiveNavIndex(index);
-    
-    // Handle navigation based on nav item clicked
-    switch (index) {
-      case 0: // How It Works
-        document.getElementById('about-section')?.scrollIntoView({ behavior: 'smooth' });
+
+    switch (item.action) {
+      case 'scroll':
+        document.querySelector(item.target)?.scrollIntoView({ behavior: 'smooth' });
         break;
-      case 1: // About
-        document.getElementById('how-it-works-section')?.scrollIntoView({ behavior: 'smooth' });
-        break;
-      case 2: // Resources
-        document.getElementById('resources-section')?.scrollIntoView({ behavior: 'smooth' });
-        break;
-      case 3: // Login
-        navigate('/login');
-        break;
-      case 4: // Sign Up
-        navigate('/signup');
+      case 'navigate':
+        navigate(item.target);
         break;
       default:
         break;
+    }
+  };
+  
+  const handleLogout = async () => {
+    try {
+      await logoutUser();
+      navigate('/');
+      setActiveNavIndex(0);
+    } catch (error) {
+      console.error("Logout failed:", error);
     }
   };
 
@@ -120,7 +142,7 @@ const LandingPage = ({ onStartQuiz, isDarkMode, onToggleDarkMode }: LandingPageP
                 <ul className="relative flex space-x-6 items-center">
                   {navItems.map((item, index) => (
                     <li
-                      key={index}
+                      key={item.label}
                       ref={(el: HTMLLIElement | null) => {
                         navRefs.current[index] = el;
                       }}
@@ -128,13 +150,13 @@ const LandingPage = ({ onStartQuiz, isDarkMode, onToggleDarkMode }: LandingPageP
                         index === activeNavIndex 
                           ? isDarkMode ? "text-white" : "text-career-purple font-medium" 
                           : isDarkMode ? "text-gray-300" : "text-gray-600"
-                      } ${index === 3 ? (isDarkMode ? "text-purple-400" : "text-career-purple") : ""}`}
+                      } ${item.label === 'Login' || item.label === 'Sign Up' ? (isDarkMode ? "text-purple-400" : "text-career-purple") : ""}`}
                       onMouseEnter={() => setHoveredNavIndex(index)}
                       onMouseLeave={() => setHoveredNavIndex(null)}
                       onClick={() => handleNavClick(index)}
                     >
                       <span className="text-sm whitespace-nowrap flex items-center justify-center h-full">
-                        {item}
+                        {item.label}
                       </span>
                     </li>
                   ))}
@@ -142,6 +164,21 @@ const LandingPage = ({ onStartQuiz, isDarkMode, onToggleDarkMode }: LandingPageP
               </div>
             </nav>
             
+            {/* User Greeting and Logout Button */}
+            {currentUser && (
+              <div className="flex items-center mr-4">
+                <span className={`text-sm mr-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  Hello, {currentUser.userName || currentUser.email}
+                </span>
+                <button
+                  onClick={handleLogout}
+                  className={`text-sm px-3 py-1 rounded ${isDarkMode ? 'bg-red-600 hover:bg-red-700 text-white' : 'bg-red-500 hover:bg-red-600 text-white'} transition-colors`}
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+
             <button 
               className="rounded-full p-2 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600"
               onClick={onToggleDarkMode}
