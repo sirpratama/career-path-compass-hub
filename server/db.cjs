@@ -39,8 +39,8 @@ if (isProduction) {
 const pool = new Pool({
     // Use DATABASE_URL directly if in production and it's set, otherwise use the constructed string
     connectionString: (isProduction && process.env.DATABASE_URL) ? process.env.DATABASE_URL : connectionString,
-    // Add SSL configuration for production if needed (e.g., for services like Heroku, Render)
-    // ssl: isProduction ? { rejectUnauthorized: false } : false,
+    // Enable SSL for production environments, common requirement for cloud databases
+    ssl: isProduction ? { rejectUnauthorized: false } : false,
 });
 
 // Optional: Add a connection test or error handling
