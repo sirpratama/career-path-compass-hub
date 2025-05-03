@@ -40,8 +40,6 @@ Before you begin, ensure you have the following installed on your system:
         DB_PORT=5432 # Or your DB port
         # JWT Secret Key
         JWT_SECRET=your_very_strong_secret_key # Replace with a strong, random secret
-        # Google Generative AI API Key (Optional, if using AI features)
-        GEMINI_API_KEY=your_gemini_api_key
         ```
 
 4.  **Database Setup:**
